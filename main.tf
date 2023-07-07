@@ -16,8 +16,8 @@ resource "kubernetes_service" "service" {
       content {
         name        = port.value.name
         port        = port.value.external_port
-        protocol    = lookup(port.value, "protocol", "TCP")
-        node_port   = lookup(port.value, "node_port", null)
+        protocol    = port.value.protocol
+        node_port   = port.value.node_port
         target_port = port.value.internal_port
       }
     }

@@ -7,6 +7,13 @@ variable "app_namespace" {
   description = "(Required) Namespace where located application"
 }
 variable "port_mapping" {
+  type = list(object({
+    name          = string
+    external_port = number
+    internal_port = number
+    protocol      = optional(string, "TCP")
+    node_port     = optional(number, null)
+  }))
   description = "(Required) Mapping ports from container to expose port"
 }
 variable "type" {
